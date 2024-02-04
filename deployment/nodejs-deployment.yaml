@@ -1,0 +1,21 @@
+# nodejs-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-hello-world
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-hello-world
+  template:
+    metadata:
+      labels:
+        app: nodejs-hello-world
+    spec:
+      containers:
+      - name: nodejs-hello-world
+        image: node-app:1.0.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
